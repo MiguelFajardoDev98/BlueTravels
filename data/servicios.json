@@ -1,0 +1,37 @@
+{
+  "servicios": [
+    {
+      "id": 1,
+      "nombre": "Avistamiento de Ballenas Azules",
+      "descripcion": "Experimenta el encuentro más cercano con las majestuosas ballenas azules en su hábitat natural. Esta excursión de medio día te lleva a las aguas profundas del Pacífico donde estas gigantes marinas se alimentan y juegan.",
+      "precio": 15000,
+      "duracion": "4 horas",
+      "ubicacion": "Golfo de Tortuga, Pacífico Colombiano, Colombia",
+      "imagen": "img/ballena-azul.jpg",
+      "incluye": ["Transporte desde hotel", "Guía bilingüe certificado", "Equipo de snorkel", "Refrigerio"],
+      "disponible": true
+    },
+    {
+      "id": 2,
+      "nombre": "Navegación al Atardecer con Ballenas Jorobadas",
+      "descripcion": "Disfruta de un recorrido nocturno donde las ballenas jorobadas emergen para sus cantos característicos. Incluye cena a bordo y experiencia de avistamiento con equipos de sonar subacuático.",
+      "precio": 22000,
+      "duracion": "6 horas",
+      "ubicacion": "Puerto Escoces, México",
+      "imagen": "img/ballena-jorobada.jpg",
+      "incluye": ["Transporte desde hotel", "Guía marine-biólogo", "Cena gourmet a bordo", "Equipo de sonar", "Certificado de avistamiento"],
+      "disponible": true
+    },
+    {
+      "id": 3,
+      "nombre": "Expedición Fotográfica de Ballenas Francas",
+      "descripcion": "Una experiencia exclusiva para fotógrafos naturales. Navega en kayak y pequeñas balsas para capturar tomas únicas de las ballenas francas australes en aguas cristalinas de Argentina.",
+      "precio": 35000,
+      "duracion": "8 horas",
+      "ubicacion": "Península Valdés, Argentina",
+      "imagen": "img/ballena-franca.jpg",
+      "incluye": ["Transporte privado", "Fotógrafo profesional", "Equipo fotográfico submarino", "Kayak/plataforma de observación", "Almuerzo gourmet"],
+      "disponible": false
+    }
+  ]
+}

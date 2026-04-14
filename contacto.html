@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- ================================================
+         BlueTravels - Página de Contacto v2.0
+    ================================================= -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Contáctanos para más información">
+    <meta name="theme-color" content="#0071b2">
+    
+    <title>Contacto - BlueTravels</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/estilos.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#0071b2',
+                            dark: '#005a8f',
+                            light: '#0088d9',
+                            50: '#e6f3fa',
+                            100: '#cce7f5'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="header-logo">
+                <svg viewBox="0 0 40 40" fill="currentColor" class="w-8 h-8">
+                    <path d="M8 28c0-4 3-7 7-7s5 2 5 2 1-2 4-2 4 2 4 4-2 4-4 4c1 3-1 5-4 5h-2c-5 0-10-2-10-6z" fill="#0071b2"/>
+                    <path d="M12 16c2-4 8-4 10-2" stroke="#0071b2" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    <path d="M26 17l6-8 2 2-6 8" stroke="#0071b2" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>BlueTravels</span>
+            </a>
+            
+            <nav class="header-nav">
+                <a href="index.html">Inicio</a>
+                <a href="catalogo.html">Catálogo</a>
+                <a href="detalle.html">Detalles</a>
+                <a href="contacto.html" class="active">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- Título de página -->
+        <section class="bg-white py-6 px-4" style="border-radius: 0 0 2rem 2rem;">
+            <div class="container">
+                <h1 class="text-2xl font-bold text-gray-900">Contáctanos</h1>
+                <p class="text-gray-500 text-sm mt-1">Estamos aquí para ayudarte</p>
+            </div>
+        </section>
+
+        <!-- Contenido de contacto -->
+        <section class="section">
+            <div class="container">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Formulario -->
+                    <div>
+                        <h2 class="section-title mb-4">Envíanos un mensaje</h2>
+                        
+                        <form id="contactForm" class="contact-form">
+                            <div class="form-group">
+                                <label class="form-label">Nombre completo <span>*</span></label>
+                                <input type="text" id="nombre" class="input" placeholder="Tu nombre" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Correo electrónico <span>*</span></label>
+                                <input type="email" id="email" class="input" placeholder="tu@correo.com" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Teléfono</label>
+                                <input type="tel" id="telefono" class="input" placeholder="+1 234 567 890">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Servicio de interés</label>
+                                <select id="servicio" class="input select">
+                                    <option value="">Selecciona una opción</option>
+                                    <option value="avistamiento-azul">Avistamiento Ballenas Azules</option>
+                                    <option value="navegacion-jorobadas">Navegación Ballenas Jorobadas</option>
+                                    <option value="expedicion-franca">Expedición Fotográfica</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Mensaje <span>*</span></label>
+                                <textarea id="mensaje" class="input" rows="4" placeholder="¿En qué podemos ayudarte?" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn-primary w-full flex items-center justify-center gap-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                </svg>
+                                Enviar mensaje
+                            </button>
+                        </form>
+                        
+                        <!-- Mensaje de éxito -->
+                        <div id="successMessage" class="hidden mt-4 p-4 bg-green-50 text-green-700 rounded-2xl">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span>¡Mensaje enviado correctamente!</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Mensaje de error -->
+                        <div id="errorMessage" class="hidden mt-4 p-4 bg-red-50 text-red-700 rounded-2xl">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <span>Por favor completa todos los campos obligatorios.</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Información de contacto -->
+                    <div>
+                        <h2 class="section-title mb-4">Información de contacto</h2>
+                        
+                        <div class="space-y-4">
+                            <!-- Email -->
+                            <div class="card p-4 flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-full bg-brand-50 flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold">Correo electrónico</h3>
+                                    <p class="text-gray-500 text-sm">info@bluetravels.com</p>
+                                    <p class="text-gray-500 text-sm">reservas@bluetravels.com</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Teléfono -->
+                            <div class="card p-4 flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-full bg-brand-50 flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold">Teléfono</h3>
+                                    <p class="text-gray-500 text-sm">+1 (555) 123-4567</p>
+                                    <p class="text-gray-400 text-xs">Lun - Vie, 8:00 - 18:00</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Ubicación -->
+                            <div class="card p-4 flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-full bg-brand-50 flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold">Oficina principal</h3>
+                                    <p class="text-gray-500 text-sm">Calle Mar 123, Puerto Costero</p>
+                                    <p class="text-gray-500 text-sm">Código Postal 12345</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Horario -->
+                            <div class="card p-4 flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-full bg-brand-50 flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold">Horario de atención</h3>
+                                    <p class="text-gray-500 text-sm">Lunes - Viernes: 8:00 - 18:00</p>
+                                    <p class="text-gray-500 text-sm">Sábados: 9:00 - 14:00</p>
+                                    <p class="text-gray-400 text-xs">Domingos: Cerrado</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">Inicio</a>
+                <a href="catalogo.html">Catálogo</a>
+                <a href="detalle.html">Detalles</a>
+                <a href="contacto.html">Contacto</a>
+            </div>
+            <p class="footer-copyright">© 2026 BlueTravels. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- TAB BAR INFERIOR FIJA -->
+    <nav class="tab-bar">
+        <a href="index.html" class="tab-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+            <span>Inicio</span>
+        </a>
+        <a href="catalogo.html" class="tab-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+            </svg>
+            <span>Catálogo</span>
+        </a>
+        <a href="detalle.html" class="tab-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+            </svg>
+            <span>Detalle</span>
+        </a>
+        <a href="contacto.html" class="tab-item active">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+            <span>Contacto</span>
+        </a>
+    </nav>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contactForm');
+            const successEl = document.getElementById('successMessage');
+            const errorEl = document.getElementById('errorMessage');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const nombre = document.getElementById('nombre').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const mensaje = document.getElementById('mensaje').value.trim();
+                
+                if (!nombre || !email || !mensaje) {
+                    errorEl.classList.remove('hidden');
+                    successEl.classList.add('hidden');
+                    return;
+                }
+                
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    errorEl.querySelector('span').textContent = 'Por favor ingresa un correo válido.';
+                    errorEl.classList.remove('hidden');
+                    successEl.classList.add('hidden');
+                    return;
+                }
+                
+                const contactos = JSON.parse(localStorage.getItem('bluetravels_contactos') || '[]');
+                contactos.push({
+                    nombre,
+                    email,
+                    telefono: document.getElementById('telefono').value.trim(),
+                    servicio: document.getElementById('servicio').value,
+                    mensaje,
+                    fecha: new Date().toISOString()
+                });
+                localStorage.setItem('bluetravels_contactos', JSON.stringify(contactos));
+                
+                successEl.classList.remove('hidden');
+                errorEl.classList.add('hidden');
+                form.reset();
+            });
+        });
+    </script>
+</body>
+</html>

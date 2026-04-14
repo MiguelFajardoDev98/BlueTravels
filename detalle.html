@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- ================================================
+         BlueTravels - Detalle de Servicio v2.0
+    ================================================= -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Detalles de la experiencia de avistamiento de ballenas">
+    <meta name="theme-color" content="#0071b2">
+    
+    <title>Detalle - BlueTravels</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/estilos.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#0071b2',
+                            dark: '#005a8f',
+                            light: '#0088d9',
+                            50: '#e6f3fa',
+                            100: '#cce7f5'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="header-logo">
+                <svg viewBox="0 0 40 40" fill="currentColor" class="w-8 h-8">
+                    <path d="M8 28c0-4 3-7 7-7s5 2 5 2 1-2 4-2 4 2 4 4-2 4-4 4c1 3-1 5-4 5h-2c-5 0-10-2-10-6z" fill="#0071b2"/>
+                    <path d="M12 16c2-4 8-4 10-2" stroke="#0071b2" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    <path d="M26 17l6-8 2 2-6 8" stroke="#0071b2" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>BlueTravels</span>
+            </a>
+            
+            <nav class="header-nav">
+                <a href="index.html">Inicio</a>
+                <a href="catalogo.html">Catálogo</a>
+                <a href="detalle.html" class="active">Detalles</a>
+                <a href="contacto.html">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- Indicador de carga -->
+        <div id="loading" class="flex justify-center items-center py-20">
+            <div class="spinner mx-auto"></div>
+        </div>
+        
+        <!-- Contenido del detalle -->
+        <div id="detalleContainer" class="hidden">
+            <!-- Hero con imagen -->
+            <section class="detail-hero">
+                <span id="badge" class="badge badge-success self-start mb-2"></span>
+                <h1 id="tituloServicio" class="text-2xl font-bold mb-2"></h1>
+                <p id="ubicacionServicio" class="flex items-center text-sm opacity-90">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                    </svg>
+                    <span></span>
+                </p>
+            </section>
+
+            <!-- Contenido principal -->
+            <section class="detail-content">
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Columna principal -->
+                    <div class="md:col-span-2">
+                        <!-- Descripción -->
+                        <div class="detail-section">
+                            <h2 class="detail-section-title">Descripción</h2>
+                            <p id="descripcionServicio" class="detail-description"></p>
+                        </div>
+                        
+                        <!-- Incluye -->
+                        <div class="detail-section">
+                            <h2 class="detail-section-title">¿Qué incluye?</h2>
+                            <ul id="incluyeLista" class="detail-list">
+                                <!-- Renderizado dinámico -->
+                            </ul>
+                        </div>
+                        
+                        <!-- Información adicional -->
+                        <div class="detail-section">
+                            <h2 class="detail-section-title">Información</h2>
+                            <div class="card p-4">
+                                <div class="flex items-center gap-2 mb-3">
+                                    <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    <span class="font-medium">Duración:</span>
+                                    <span id="duracion" class="text-gray-500"></span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                    </svg>
+                                    <span class="font-medium">Ubicación:</span>
+                                    <span id="ubicacion" class="text-gray-500"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Favoritos guardados -->
+                        <div class="detail-section">
+                            <h2 class="detail-section-title">Tus Favoritos</h2>
+                            <div id="favoritosContainer" class="space-y-2">
+                                <!-- Renderizado dinámico -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Sidebar con precio -->
+                    <div class="md:col-span-1">
+                        <div class="price-card">
+                            <p class="price-label">Precio por persona</p>
+                            <p id="precioServicio" class="price-value"></p>
+                            
+                            <button id="btnReservar" class="btn-primary w-full mt-4">
+                                Reservar Ahora
+                            </button>
+                            
+                            <!-- Notificación de éxito -->
+                            <div id="notificacionExito" class="hidden mt-4 p-3 bg-green-50 text-green-700 rounded-xl text-sm text-center">
+                                ¡Reservado con éxito!
+                            </div>
+                            
+                            <!-- Botón de favorito -->
+                            <button id="btnFavorito" onclick="toggleFavoritoActual()" class="btn-secondary w-full mt-3 flex items-center justify-center gap-2">
+                                <svg id="iconoFavorito" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                                </svg>
+                                <span id="textoFavorito">Guardar</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Mensaje de error -->
+        <div id="errorContainer" class="hidden flex justify-center items-center min-h-[50vh]">
+            <div class="card p-8 max-w-md mx-auto text-center">
+                <svg class="w-16 h-16 mx-auto text-red-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                </svg>
+                <p id="errorMessage" class="text-gray-600 mb-4"></p>
+                <a href="catalogo.html" class="btn-primary inline-block">Ver Catálogo</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">Inicio</a>
+                <a href="catalogo.html">Catálogo</a>
+                <a href="detalle.html">Detalles</a>
+                <a href="contacto.html">Contacto</a>
+            </div>
+            <p class="footer-copyright">© 2026 BlueTravels. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- TAB BAR INFERIOR FIJA -->
+    <nav class="tab-bar">
+        <a href="index.html" class="tab-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+            <span>Inicio</span>
+        </a>
+        <a href="catalogo.html" class="tab-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+            </svg>
+            <span>Catálogo</span>
+        </a>
+        <a href="detalle.html" class="tab-item active">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+            </svg>
+            <span>Detalle</span>
+        </a>
+        <a href="contacto.html" class="tab-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+            <span>Contacto</span>
+        </a>
+    </nav>
+
+    <script src="js/main.js"></script>
+    <script>
+        let servicioActual = null;
+        
+        document.addEventListener('DOMContentLoaded', async function() {
+            const servicioId = parseInt(obtenerParametroURL('id'));
+            
+            try {
+                const servicios = await cargarServicios();
+                
+                if (servicioId) {
+                    servicioActual = servicios.find(s => s.id === servicioId);
+                }
+                
+                if (!servicioActual && servicios.length > 0) {
+                    servicioActual = servicios[0];
+                }
+                
+                if (servicioActual) {
+                    renderizarDetalleNuevo(servicioActual);
+                } else {
+                    mostrarErrorDetalle('No se encontró el servicio.');
+                }
+            } catch (error) {
+                mostrarErrorDetalle('Error al cargar el servicio.');
+            }
+        });
+        
+        function renderizarDetalleNuevo(servicio) {
+            const loadingEl = document.getElementById('loading');
+            const containerEl = document.getElementById('detalleContainer');
+            const heroEl = document.querySelector('.detail-hero');
+            
+            loadingEl.classList.add('hidden');
+            containerEl.classList.remove('hidden');
+            
+            if (servicio.imagen) {
+                const existingBgImg = heroEl.querySelector('.hero-bg-image');
+                if (!existingBgImg) {
+                    const bgImg = document.createElement('img');
+                    bgImg.className = 'hero-bg-image';
+                    bgImg.src = servicio.imagen;
+                    bgImg.alt = '';
+                    bgImg.onerror = function() { this.remove(); };
+                    heroEl.insertBefore(bgImg, heroEl.firstChild);
+                }
+            }
+            
+            document.getElementById('tituloServicio').textContent = servicio.nombre;
+            document.getElementById('descripcionServicio').textContent = servicio.descripcion;
+            document.getElementById('ubicacionServicio').querySelector('span').textContent = servicio.ubicacion;
+            document.getElementById('ubicacion').textContent = servicio.ubicacion;
+            document.getElementById('duracion').textContent = servicio.duracion;
+            document.getElementById('precioServicio').textContent = formatearPrecio(servicio.precio);
+            
+            const badge = document.getElementById('badge');
+            if (servicio.disponible) {
+                badge.textContent = '✓ Disponible';
+                badge.className = 'badge badge-success self-start mb-2';
+            } else {
+                badge.textContent = '✕ Agotado';
+                badge.className = 'badge badge-error self-start mb-2';
+                document.getElementById('btnReservar').disabled = true;
+                document.getElementById('btnReservar').className = 'btn-secondary w-full mt-4 cursor-not-allowed opacity-50';
+                document.getElementById('btnReservar').textContent = 'No disponible';
+            }
+            
+            const incluyeLista = document.getElementById('incluyeLista');
+            incluyeLista.innerHTML = servicio.incluye.map(item => `
+                <li>
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    ${item}
+                </li>
+            `).join('');
+            
+            guardarFavorito(servicio.id);
+            actualizarBotonFavorito(servicio.id);
+            renderizarFavoritos();
+            
+            document.getElementById('btnReservar').addEventListener('click', function() {
+                document.getElementById('notificacionExito').classList.remove('hidden');
+                this.textContent = '¡Reservado!';
+                this.disabled = true;
+                this.className = 'btn-secondary w-full mt-4 cursor-not-allowed opacity-50';
+            });
+        }
+        
+        function toggleFavoritoActual() {
+            if (servicioActual) {
+                toggleFavorito(servicioActual.id);
+                actualizarBotonFavorito(servicioActual.id);
+            }
+        }
+        
+        function actualizarBotonFavorito(id) {
+            const esFav = esFavorito(id);
+            const icono = document.getElementById('iconoFavorito');
+            const texto = document.getElementById('textoFavorito');
+            
+            if (esFav) {
+                icono.setAttribute('fill', 'currentColor');
+                texto.textContent = 'Guardado';
+            } else {
+                icono.setAttribute('fill', 'none');
+                texto.textContent = 'Guardar';
+            }
+        }
+    </script>
+</body>
+</html>

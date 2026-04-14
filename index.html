@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- ================================================
+         BlueTravels - Página Principal v2.0
+         Rediseño basado en mockups de marca
+         - Hero: "Planeemos Tu Próximo Viaje"
+         - Formulario de búsqueda
+         - Tab Bar inferior fija
+    ================================================= -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="BlueTravels - Experiencias únicas de avistamiento de ballenas">
+    <meta name="theme-color" content="#0071b2">
+    
+    <title>BlueTravels - Avistamiento de Ballenas</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="css/estilos.css">
+    
+    <!-- Configuración Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#0071b2',
+                            dark: '#005a8f',
+                            light: '#0088d9',
+                            50: '#e6f3fa',
+                            100: '#cce7f5'
+                        }
+                    },
+                    borderRadius: {
+                        '2xl': '1rem',
+                        '3xl': '2rem'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- ============================================
+         HEADER
+    ============================================= -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="header-logo">
+                <svg viewBox="0 0 40 40" fill="currentColor" class="w-8 h-8">
+                    <path d="M8 28c0-4 3-7 7-7s5 2 5 2 1-2 4-2 4 2 4 4-2 4-4 4c1 3-1 5-4 5h-2c-5 0-10-2-10-6z" fill="#0071b2"/>
+                    <path d="M12 16c2-4 8-4 10-2" stroke="#0071b2" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    <path d="M26 17l6-8 2 2-6 8" stroke="#0071b2" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>BlueTravels</span>
+            </a>
+            
+            <nav class="header-nav">
+                <a href="index.html" class="active">Inicio</a>
+                <a href="catalogo.html">Catálogo</a>
+                <a href="detalle.html">Detalles</a>
+                <a href="contacto.html">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ============================================
+         MAIN CONTENT
+    ============================================= -->
+    <main>
+        <!-- ============================================
+             HERO SECTION CON FORMULARIO
+        ============================================= -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Planeemos Tu Próximo Viaje</h1>
+                <p class="hero-subtitle">Encuentra las mejores experiencias de avistamiento de ballenas</p>
+                
+                <!-- Formulario de búsqueda -->
+                <form class="search-form" onsubmit="event.preventDefault(); window.location.href='catalogo.html';">
+                    <div class="search-form-grid">
+                        <!-- Destino -->
+                        <div class="search-field">
+                            <label>Destino</label>
+                            <select class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-white text-gray-700 focus:border-brand focus:outline-none focus:ring-4 focus:ring-brand/10 appearance-none cursor-pointer" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 fill=%27none%27 viewBox=%270 0 24 24%27 stroke=%27%23475569%27%3E%3Cpath stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%272%27 d=%27M19 9l-7 7-7-7%27%3E%3C/path%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1.25rem; padding-right: 3rem;">
+                                <option value="">Todos los destinos</option>
+                                <option value="colombia">Colombia</option>
+                                <option value="mexico">México</option>
+                                <option value="argentina">Argentina</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Tipo de experiencia -->
+                        <div class="search-field">
+                            <label>Experiencia</label>
+                            <select class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-white text-gray-700 focus:border-brand focus:outline-none focus:ring-4 focus:ring-brand/10 appearance-none cursor-pointer" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 fill=%27none%27 viewBox=%270 0 24 24%27 stroke=%27%23475569%27%3E%3Cpath stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%272%27 d=%27M19 9l-7 7-7-7%27%3E%3C/path%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1.25rem; padding-right: 3rem;">
+                                <option value="">Todas</option>
+                                <option value="avistamiento">Avistamiento</option>
+                                <option value="fotografico">Fotográfico</option>
+                                <option value="navegacion">Navegación</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Fecha -->
+                        <div class="search-field">
+                            <label>Fecha</label>
+                            <input type="date" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-white text-gray-700 focus:border-brand focus:outline-none focus:ring-4 focus:ring-brand/10">
+                        </div>
+                        
+                        <!-- Personas -->
+                        <div class="search-field">
+                            <label>Personas</label>
+                            <select class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-white text-gray-700 focus:border-brand focus:outline-none focus:ring-4 focus:ring-brand/10 appearance-none cursor-pointer" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 fill=%27none%27 viewBox=%270 0 24 24%27 stroke=%27%23475569%27%3E%3Cpath stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%272%27 d=%27M19 9l-7 7-7-7%27%3E%3C/path%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1.25rem; padding-right: 3rem;">
+                                <option value="1">1 persona</option>
+                                <option value="2" selected>2 personas</option>
+                                <option value="3">3 personas</option>
+                                <option value="4">4 personas</option>
+                                <option value="5+">5+ personas</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Botón de búsqueda -->
+                    <button type="submit" class="btn-primary search-btn mt-4">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                        Buscar Experiencias
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- ============================================
+             SECCIÓN: EXPERIENCIAS DESTACADAS
+        ============================================= -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Experiencias Destacadas</h2>
+                    <a href="catalogo.html" class="section-link">Ver todas →</a>
+                </div>
+                
+                <!-- Grid de servicios -->
+                <div id="destacadosContainer" class="grid-3">
+                    <!-- Cargado dinámicamente -->
+                    <div class="text-center p-8">
+                        <div class="spinner mx-auto"></div>
+                        <p class="mt-2 text-sm text-gray-500">Cargando experiencias...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             SECCIÓN: CARACTERÍSTICAS
+        ============================================= -->
+        <section class="section bg-white" style="border-radius: 2rem 2rem 0 0;">
+            <div class="container">
+                <h2 class="section-title text-center mb-6">¿Por qué elegirnos?</h2>
+                
+                <div class="grid-3">
+                    <!-- Característica 1 -->
+                    <div class="card p-6 text-center">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-brand-50 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Guías Expertos</h3>
+                        <p class="text-sm text-gray-500">Marine-biólogos certificados con años de experiencia</p>
+                    </div>
+                    
+                    <!-- Característica 2 -->
+                    <div class="card p-6 text-center">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-brand-50 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Conservación</h3>
+                        <p class="text-sm text-gray-500">Turismo responsable con protocolos estrictos</p>
+                    </div>
+                    
+                    <!-- Característica 3 -->
+                    <div class="card p-6 text-center">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-brand-50 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">98% Avistamiento</h3>
+                        <p class="text-sm text-gray-500">La mayor tasa de éxito del mercado</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             SECCIÓN: ESTADÍSTICAS
+        ============================================= -->
+        <section class="section">
+            <div class="container">
+                <div class="card p-6">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                        <div>
+                            <p class="text-3xl font-bold text-brand">15+</p>
+                            <p class="text-sm text-gray-500">Años de experiencia</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-bold text-brand">5000+</p>
+                            <p class="text-sm text-gray-500">Viajes realizados</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-bold text-brand">98%</p>
+                            <p class="text-sm text-gray-500">Tasa de avistamiento</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-bold text-brand">3</p>
+                            <p class="text-sm text-gray-500">Continentes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             SECCIÓN: OPINIONES DE CLIENTES
+        ============================================= -->
+        <section class="section bg-white" style="border-radius: 2rem 2rem 0 0;">
+            <div class="container">
+                <h2 class="section-title text-center mb-6">Lo que dicen nuestros clientes</h2>
+                
+                <div class="opiniones-grid">
+                    <!-- Opinion 1 -->
+                    <div class="card p-6 opinion-card">
+                        <div class="opinion-header">
+                            <div class="opinion-avatar">MR</div>
+                            <div>
+                                <p class="font-semibold text-gray-900">María Rodríguez</p>
+                                <p class="text-sm text-gray-500">Colombia</p>
+                            </div>
+                        </div>
+                        <div class="opinion-stars">
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                        </div>
+                        <p class="opinion-text">"Una experiencia inolvidable. Pudimos ver ballenas azules muy de cerca. Los guías son muy profesionales y la organización excelente."</p>
+                    </div>
+
+                    <!-- Opinion 2 -->
+                    <div class="card p-6 opinion-card">
+                        <div class="opinion-header">
+                            <div class="opinion-avatar">CL</div>
+                            <div>
+                                <p class="font-semibold text-gray-900">Carlos López</p>
+                                <p class="text-sm text-gray-500">México</p>
+                            </div>
+                        </div>
+                        <div class="opinion-stars">
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star">★</span>
+                        </div>
+                        <p class="opinion-text">"El tour al atardecer fue mágico. Las ballenas jorobadas cantando bajo el agua es algo que nunca olvidaré. Totalmente recomendado."</p>
+                    </div>
+
+                    <!-- Opinion 3 -->
+                    <div class="card p-6 opinion-card">
+                        <div class="opinion-header">
+                            <div class="opinion-avatar">AS</div>
+                            <div>
+                                <p class="font-semibold text-gray-900">Ana Sánchez</p>
+                                <p class="text-sm text-gray-500">Argentina</p>
+                            </div>
+                        </div>
+                        <div class="opinion-stars">
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                        </div>
+                        <p class="opinion-text">"Como fotógrafa profesional, la expedición fue perfecta. Pude capturar imágenes increíbles de las ballenas francas."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============================================
+         FOOTER
+    ============================================= -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">Inicio</a>
+                <a href="catalogo.html">Catálogo</a>
+                <a href="detalle.html">Detalles</a>
+                <a href="contacto.html">Contacto</a>
+            </div>
+            <p class="footer-copyright">© 2026 BlueTravels. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- ============================================
+         TAB BAR INFERIOR FIJA
+    ============================================= -->
+    <nav class="tab-bar">
+        <a href="index.html" class="tab-item active">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+            <span>Inicio</span>
+        </a>
+        <a href="catalogo.html" class="tab-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+            </svg>
+            <span>Catálogo</span>
+        </a>
+        <a href="detalle.html" class="tab-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+            </svg>
+            <span>Detalle</span>
+        </a>
+        <a href="contacto.html" class="tab-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+            <span>Contacto</span>
+        </a>
+    </nav>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script>
+        // Cargar experiencias destacadas en el home
+        document.addEventListener('DOMContentLoaded', async function() {
+            const container = document.getElementById('destacadosContainer');
+            try {
+                const servicios = await cargarServicios();
+                if (servicios.length > 0) {
+                    container.innerHTML = servicios.slice(0, 3).map(servicio => generarTarjetaHTML(servicio)).join('');
+                }
+            } catch (error) {
+                container.innerHTML = '<p class="col-span-3 text-center text-gray-500">Error al cargar experiencias</p>';
+            }
+        });
+    </script>
+</body>
+</html>

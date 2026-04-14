@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- ================================================
+         BlueTravels - Catálogo de Servicios v2.0
+    ================================================= -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Catálogo de experiencias de avistamiento de ballenas">
+    <meta name="theme-color" content="#0071b2">
+    
+    <title>Catálogo - BlueTravels</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/estilos.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#0071b2',
+                            dark: '#005a8f',
+                            light: '#0088d9',
+                            50: '#e6f3fa',
+                            100: '#cce7f5'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="header-logo">
+                <svg viewBox="0 0 40 40" fill="currentColor" class="w-8 h-8">
+                    <path d="M8 28c0-4 3-7 7-7s5 2 5 2 1-2 4-2 4 2 4 4-2 4-4 4c1 3-1 5-4 5h-2c-5 0-10-2-10-6z" fill="#0071b2"/>
+                    <path d="M12 16c2-4 8-4 10-2" stroke="#0071b2" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    <path d="M26 17l6-8 2 2-6 8" stroke="#0071b2" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>BlueTravels</span>
+            </a>
+            
+            <nav class="header-nav">
+                <a href="index.html">Inicio</a>
+                <a href="catalogo.html" class="active">Catálogo</a>
+                <a href="detalle.html">Detalles</a>
+                <a href="contacto.html">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- Título de página -->
+        <section class="bg-white py-6 px-4" style="border-radius: 0 0 2rem 2rem;">
+            <div class="container">
+                <h1 class="text-2xl font-bold text-gray-900">Catálogo de Experiencias</h1>
+                <p class="text-gray-500 text-sm mt-1">Encuentra tu próxima aventura</p>
+            </div>
+        </section>
+
+        <!-- Lista de servicios -->
+        <section class="section">
+            <div class="container">
+                <!-- Indicador de carga -->
+                <div id="loading" class="text-center py-12">
+                    <div class="spinner mx-auto"></div>
+                    <p class="mt-2 text-sm text-gray-500">Cargando experiencias...</p>
+                </div>
+                
+                <!-- Mensaje de error -->
+                <div id="errorContainer" class="hidden text-center py-12">
+                    <div class="card p-6 max-w-md mx-auto text-center">
+                        <svg class="w-12 h-12 mx-auto text-red-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                        </svg>
+                        <p id="errorMessage" class="text-gray-600 mb-4"></p>
+                        <button onclick="cargarServicios().then(renderizarCatalogo)" class="btn-primary">
+                            Reintentar
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Grid de servicios -->
+                <div id="serviciosContainer" class="hidden">
+                    <div id="serviciosGrid" class="grid-3">
+                        <!-- Renderizado dinámicamente -->
+                    </div>
+                    
+                    <!-- Contador -->
+                    <p id="serviciosCount" class="text-center text-gray-500 text-sm mt-6">
+                        Mostrando <span id="countNumber">0</span> experiencias
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">Inicio</a>
+                <a href="catalogo.html">Catálogo</a>
+                <a href="detalle.html">Detalles</a>
+                <a href="contacto.html">Contacto</a>
+            </div>
+            <p class="footer-copyright">© 2026 BlueTravels. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- TAB BAR INFERIOR FIJA -->
+    <nav class="tab-bar">
+        <a href="index.html" class="tab-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+            <span>Inicio</span>
+        </a>
+        <a href="catalogo.html" class="tab-item active">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+            </svg>
+            <span>Catálogo</span>
+        </a>
+        <a href="detalle.html" class="tab-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+            </svg>
+            <span>Detalle</span>
+        </a>
+        <a href="contacto.html" class="tab-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+            <span>Contacto</span>
+        </a>
+    </nav>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Renderizar catálogo al cargar
+        document.addEventListener('DOMContentLoaded', function() {
+            cargarServicios().then(renderizarCatalogo);
+        });
+        
+        // Función para renderizar el catálogo
+        function renderizarCatalogo(servicios) {
+            const loadingEl = document.getElementById('loading');
+            const errorEl = document.getElementById('errorContainer');
+            const containerEl = document.getElementById('serviciosContainer');
+            const gridEl = document.getElementById('serviciosGrid');
+            const countEl = document.getElementById('countNumber');
+            
+            loadingEl.classList.add('hidden');
+            errorEl.classList.add('hidden');
+            containerEl.classList.remove('hidden');
+            
+            gridEl.innerHTML = servicios.map(servicio => generarTarjetaHTML(servicio)).join('');
+            countEl.textContent = servicios.length;
+        }
+    </script>
+</body>
+</html>
