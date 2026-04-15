@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Sobre nosotros - BlueTravels">
+    <meta name="theme-color" content="#0071b2">
+    
+    <title>Nosotros - BlueTravels</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/estilos.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#0071b2',
+                            dark: '#005a8f',
+                            light: '#0088d9',
+                            50: '#e6f3fa',
+                            100: '#cce7f5'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="header-logo">
+                <svg viewBox="0 0 40 40" fill="currentColor" class="w-8 h-8">
+                    <path d="M8 28c0-4 3-7 7-7s5 2 5 2 1-2 4-2 4 2 4 4-2 4-4 4c1 3-1 5-4 5h-2c-5 0-10-2-10-6z" fill="#0071b2"/>
+                    <path d="M12 16c2-4 8-4 10-2" stroke="#0071b2" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    <path d="M26 17l6-8 2 2-6 8" stroke="#0071b2" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>BlueTravels</span>
+            </a>
+            
+            <nav class="header-nav">
+                <a href="index.html">Inicio</a>
+                <a href="catalogo.html">Catálogo</a>
+                <a href="detalle.html">Detalles</a>
+                <a href="nosotros.html" class="active">Nosotros</a>
+                <a href="contacto.html">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- Hero de Nosotros -->
+        <section class="hero" style="min-height: 300px; display: flex; align-items: center; justify-content: center; text-align: center;">
+            <div class="hero-content">
+                <h1 class="hero-title">Nuestra Historia</h1>
+                <p class="hero-subtitle">Comprometidos con la conservación marina desde 2010</p>
+            </div>
+        </section>
+
+        <!-- Sección: Historia -->
+        <section class="section">
+            <div class="container">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h2 class="section-title">Sobre BlueTravels</h2>
+                        <p class="text-gray-600 mb-4">BlueTravels nació en 2010 con una misión clara: crear experiencias de avistamiento de ballenas que sean tanto inolvidables para nuestros clientes como responsables con el medio ambiente.</p>
+                        <p class="text-gray-600 mb-4">Somos una empresa apasionada por la vida marina y creemos firmemente que al conectar a las personas con estas criaturas majestuosas, fomenta un mayor respeto y protección por nuestros océanos.</p>
+                        <p class="text-gray-600">Con más de 15 años de experiencia y más de 5,000 expediciones exitosas, nos hemos convertido en líderes en turismo de avistamiento responsable en Latinoamérica.</p>
+                    </div>
+                    <div class="card p-8 text-center bg-gradient-to-br from-brand-50 to-brand-100">
+                        <div class="grid grid-cols-2 gap-6">
+                            <div>
+                                <p class="text-4xl font-bold text-brand">15+</p>
+                                <p class="text-sm text-gray-600">Años de experiencia</p>
+                            </div>
+                            <div>
+                                <p class="text-4xl font-bold text-brand">5000+</p>
+                                <p class="text-sm text-gray-600">Expediciones</p>
+                            </div>
+                            <div>
+                                <p class="text-4xl font-bold text-brand">98%</p>
+                                <p class="text-sm text-gray-600">Tasa de éxito</p>
+                            </div>
+                            <div>
+                                <p class="text-4xl font-bold text-brand">50+</p>
+                                <p class="text-sm text-gray-600">Guías expertos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Sostenibilidad -->
+        <section class="section bg-white" style="border-radius: 2rem 2rem 0 0;">
+            <div class="container">
+                <h2 class="section-title text-center mb-8">Compromiso con la Sostenibilidad</h2>
+                
+                <div class="grid-3">
+                    <div class="card p-6 text-center">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Turismo Responsable</h3>
+                        <p class="text-sm text-gray-500">Seguimos estrictos protocolos de aproximación para no perturbar el comportamiento natural de las ballenas.</p>
+                    </div>
+                    
+                    <div class="card p-6 text-center">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-blue-100 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Certificación AMI</h3>
+                        <p class="text-sm text-gray-500">Somos miembros certificados de la Alianza Mundial de ballenas y delfines, cumpliendo con estándares internacionales.</p>
+                    </div>
+                    
+                    <div class="card p-6 text-center">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-teal-100 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">1% for the Planet</h3>
+                        <p class="text-sm text-gray-500">Donamos el 1% de nuestras ganancias a organizaciones de conservación marina en todo el mundo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Equipo -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title text-center mb-8">Nuestro Equipo</h2>
+                
+                <div class="grid-3">
+                    <div class="card p-6 text-center">
+                        <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-brand to-brand-light flex items-center justify-center text-white text-2xl font-bold">
+                            DR
+                        </div>
+                        <h3 class="font-bold text-lg">Dra. Elena Martínez</h3>
+                        <p class="text-sm text-brand mb-2">Directora de Conservación</p>
+                        <p class="text-xs text-gray-500">PhD en Biología Marina con 20 años de experiencia en investigación de cetáceos.</p>
+                    </div>
+                    
+                    <div class="card p-6 text-center">
+                        <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-brand to-brand-light flex items-center justify-center text-white text-2xl font-bold">
+                            CM
+                        </div>
+                        <h3 class="font-bold text-lg">Carlos Mendoza</h3>
+                        <p class="text-sm text-brand mb-2">Director de Operaciones</p>
+                        <p class="text-xs text-gray-500">Excapitán de barco con licencia de guía turístico y especialista en navegación costera.</p>
+                    </div>
+                    
+                    <div class="card p-6 text-center">
+                        <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-brand to-brand-light flex items-center justify-center text-white text-2xl font-bold">
+                            ML
+                        </div>
+                        <h3 class="font-bold text-lg">María López</h3>
+                        <p class="text-sm text-brand mb-2">Coordinadora de Sostenibilidad</p>
+                        <p class="text-xs text-gray-500">Especialista en certificaciones ambientales y gestión de turismo responsable.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Valores -->
+        <section class="section bg-white" style="border-radius: 2rem 2rem 0 0;">
+            <div class="container">
+                <h2 class="section-title text-center mb-8">Nuestros Valores</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="card p-6 flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-brand-50 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold mb-1">Respeto</h3>
+                            <p class="text-sm text-gray-500">Priorizamos siempre el bienestar de los animales sobre la experiencia turística.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card p-6 flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-brand-50 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold mb-1">Educación</h3>
+                            <p class="text-sm text-gray-500">Cada expedición incluye información educativa sobre conservación marina.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card p-6 flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-brand-50 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold mb-1">Comunidad</h3>
+                            <p class="text-sm text-gray-500">Apoyamos a las comunidades locales costeras con empleo y desarrollo sostenible.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card p-6 flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-brand-50 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold mb-1">Excelencia</h3>
+                            <p class="text-sm text-gray-500">Buscamos la máxima calidad en cada aspecto de nuestro servicio.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">Inicio</a>
+                <a href="catalogo.html">Catálogo</a>
+                <a href="detalle.html">Detalles</a>
+                <a href="nosotros.html">Nosotros</a>
+                <a href="contacto.html">Contacto</a>
+            </div>
+            <p class="footer-copyright">© 2026 BlueTravels. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- TAB BAR INFERIOR FIJA -->
+    <nav class="tab-bar">
+        <a href="index.html" class="tab-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+            <span>Inicio</span>
+        </a>
+        <a href="catalogo.html" class="tab-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+            </svg>
+            <span>Catálogo</span>
+        </a>
+        <a href="detalle.html" class="tab-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+            </svg>
+            <span>Detalle</span>
+        </a>
+        <a href="nosotros.html" class="tab-item active">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            <span>Nosotros</span>
+        </a>
+        <a href="contacto.html" class="tab-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+            <span>Contacto</span>
+        </a>
+    </nav>
+</body>
+</html>
