@@ -1,14 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ServicioService } from '../../services/servicio.service';
 import { Servicio } from '../../models/servicio.model';
+import { Observable, combineLatest } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-catalogo',
   standalone: true,
   imports: [CommonModule, RouterLink, FormsModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <section class="bg-white py-6 px-4" style="border-radius: 0 0 2rem 2rem;">
       <div class="container">
@@ -18,59 +21,24 @@ import { Servicio } from '../../models/servicio.model';
     </section>
 
     <section class="section">
-      <div class="container">
+      <div class="container" *ngIf="filteredServicios$ | async as serviciosFiltrados">
         <div class="flex justify-between items-center mb-6">
           <button (click)="mostrarFormulario = !mostrarFormulario" class="btn-primary">
             {{ mostrarFormulario ? 'Cancelar' : '+ Nuevo Tour' }}
           </button>
-          <p class="text-sm text-gray-500">Mostrando {{ servicios.length }} experiencias</p>
+          <p class="text-sm text-gray-500">Mostrando {{ serviciosFiltrados.length }} experiencias</p>
         </div>
 
-        <div *ngIf="mostrarFormulario" class="card p-6 mb-6" style="background: var(--color-bg-white); border-radius: var(--radius-lg);">
-          <h3 class="font-bold text-lg mb-4">Crear Nuevo Tour</h3>
-          <form (submit)="crearServicio($event)" class="space-y-4">
-            <div class="grid md:grid-cols-2 gap-4">
-              <div>
-                <label class="block text-sm font-medium mb-1">Nombre *</label>
-                <input [(ngModel)]="nuevoServicio.nombre" name="nombre" required class="input">
-              </div>
-              <div>
-                <label class="block text-sm font-medium mb-1">Ubicación *</label>
-                <input [(ngModel)]="nuevoServicio.ubicacion" name="ubicacion" required class="input">
-              </div>
-              <div>
-                <label class="block text-sm font-medium mb-1">Precio (USD) *</label>
-                <input [(ngModel)]="nuevoServicio.precio" name="precio" type="number" required class="input">
-              </div>
-              <div>
-                <label class="block text-sm font-medium mb-1">Duración *</label>
-                <input [(ngModel)]="nuevoServicio.duracion" name="duracion" required class="input" placeholder="Ej: 4 horas">
-              </div>
-            </div>
-            <div>
-              <label class="block text-sm font-medium mb-1">Descripción *</label>
-              <textarea [(ngModel)]="nuevoServicio.descripcion" name="descripcion" rows="3" required class="input"></textarea>
-            </div>
-            <div>
-              <label class="block text-sm font-medium mb-1">URL Imagen</label>
-              <input [(ngModel)]="nuevoServicio.imagen" name="imagen" class="input" placeholder="img/nombre.jpg">
-            </div>
-            <div>
-              <label class="block text-sm font-medium mb-1">Incluye (separados por coma)</label>
-              <input [(ngModel)]="incluyeTexto" name="incluye" class="input" placeholder="Guía, transporte, almuerzo">
-            </div>
-            <div class="flex items-center gap-4">
-              <label class="flex items-center gap-2">
-                <input [(ngModel)]="nuevoServicio.disponible" name="disponible" type="checkbox">
-                <span class="text-sm">Disponible</span>
-              </label>
-            </div>
-            <button type="submit" class="btn-primary">Guardar Tour</button>
-          </form>
+        <div *ngIf="serviciosFiltrados.length === 0" class="text-center py-12 bg-gray-50 rounded-2xl mb-6">
+          <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+          <h3 class="text-lg font-bold text-gray-600">No encontramos resultados</h3>
+          <p class="text-gray-500 mb-6">Intenta con otros filtros o busca algo diferente</p>
         </div>
 
         <div class="grid-3">
-          <article *ngFor="let servicio of servicios" class="service-card">
+          <article *ngFor="let servicio of serviciosFiltrados" class="service-card">
             <div class="service-card-image">
               <img [src]="'/img/' + getImageName(servicio.imagen)" [alt]="servicio.nombre" onerror="this.style.display='none'">
               <div class="image-fallback" *ngIf="!servicio.imagen">
@@ -84,6 +52,11 @@ import { Servicio } from '../../models/servicio.model';
               <button (click)="eliminarServicio(servicio.id)" class="btn-delete" title="Eliminar">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                </svg>
+              </button>
+              <button (click)="editarServicio(servicio)" class="btn-edit" title="Editar">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                 </svg>
               </button>
             </div>
@@ -129,8 +102,12 @@ import { Servicio } from '../../models/servicio.model';
     .service-card-price span { font-size: 0.75rem; font-weight: 400; color: var(--color-text-muted); }
     .btn-primary { background-color: var(--color-brand); color: white; border-radius: var(--radius-lg); padding: 0.75rem 1.5rem; font-weight: 600; border: none; cursor: pointer; }
     .btn-primary:hover { background-color: var(--color-brand-dark); }
+    .btn-secondary { background-color: var(--color-bg-white); color: var(--color-brand); border: 2px solid var(--color-brand); border-radius: var(--radius-lg); padding: 0.75rem 1.5rem; font-weight: 600; cursor: pointer; }
+    .btn-secondary:hover { background-color: var(--color-brand-50); }
     .btn-delete { position: absolute; top: 0.75rem; left: 0.75rem; background: rgba(239, 68, 68, 0.9); color: white; border: none; border-radius: 50%; width: 32px; height: 32px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
     .btn-delete:hover { background: #dc2626; }
+    .btn-edit { position: absolute; top: 0.75rem; left: 3rem; background: rgba(59, 130, 246, 0.9); color: white; border: none; border-radius: 50%; width: 32px; height: 32px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .btn-edit:hover { background: #2563eb; }
     .badge { display: inline-flex; padding: 0.375rem 0.75rem; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 600; }
     .badge-success { background-color: #d1fae5; color: #065f46; }
     .badge-error { background-color: #fee2e2; color: #991b1b; }
@@ -165,9 +142,10 @@ import { Servicio } from '../../models/servicio.model';
   `]
 })
 export class CatalogoComponent implements OnInit {
-  servicios: Servicio[] = [];
   mostrarFormulario = false;
+  editandoId: number | null = null;
   incluyeTexto = '';
+  filteredServicios$: Observable<Servicio[]>;
   
   nuevoServicio = {
     nombre: '',
@@ -180,38 +158,86 @@ export class CatalogoComponent implements OnInit {
     disponible: true
   };
 
-  constructor(private servicioService: ServicioService) {}
-
-  ngOnInit(): void {
-    this.cargarServicios();
+  constructor(
+    private servicioService: ServicioService,
+    private route: ActivatedRoute
+  ) {
+    this.filteredServicios$ = combineLatest([
+      this.servicioService.servicios$,
+      this.route.queryParams
+    ]).pipe(
+      map(([servicios, params]) => this.filtrarServicios(servicios, params['destino'], params['experiencia']))
+    );
   }
 
-  cargarServicios(): void {
-    this.servicios = this.servicioService.getServicios();
+  ngOnInit(): void {}
+
+  private filtrarServicios(servicios: Servicio[], destino?: string, experiencia?: string): Servicio[] {
+    return servicios.filter(s => {
+      let matchDestino = true;
+      let matchExperiencia = true;
+
+      if (destino) {
+        matchDestino = s.ubicacion.toLowerCase().includes(destino.toLowerCase());
+      }
+
+      if (experiencia) {
+        const keywords: {[key: string]: string[]} = {
+          'avistamiento': ['avistamiento', 'encuentro'],
+          'fotografico': ['fotográfica', 'foto', 'capturar'],
+          'navegacion': ['navegación', 'recorrido', 'barco']
+        };
+        const searchTerms = keywords[experiencia] || [experiencia];
+        matchExperiencia = searchTerms.some(term => 
+          s.nombre.toLowerCase().includes(term.toLowerCase()) || 
+          s.descripcion.toLowerCase().includes(term.toLowerCase())
+        );
+      }
+
+      return matchDestino && matchExperiencia;
+    });
   }
 
-  crearServicio(event: Event): void {
+  submitFormulario(event: Event): void {
     event.preventDefault();
     if (!this.nuevoServicio.nombre || !this.nuevoServicio.descripcion) {
       alert('Por favor completa los campos obligatorios');
       return;
     }
 
-    const servicioParaCrear = {
+    const servicioData = {
       ...this.nuevoServicio,
       incluye: this.incluyeTexto.split(',').map(s => s.trim()).filter(s => s)
     };
 
-    this.servicioService.crearServicio(servicioParaCrear);
-    this.cargarServicios();
+    if (this.editandoId) {
+      this.servicioService.actualizarServicio(this.editandoId, servicioData);
+    } else {
+      this.servicioService.crearServicio(servicioData);
+    }
+
     this.mostrarFormulario = false;
+    this.editandoId = null;
+    this.resetFormulario();
+  }
+
+  editarServicio(servicio: Servicio): void {
+    this.editandoId = servicio.id;
+    this.nuevoServicio = { ...servicio };
+    this.incluyeTexto = servicio.incluye.join(', ');
+    this.mostrarFormulario = true;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  cancelarEdicion(): void {
+    this.mostrarFormulario = false;
+    this.editandoId = null;
     this.resetFormulario();
   }
 
   eliminarServicio(id: number): void {
     if (confirm('¿Estás seguro de eliminar este tour?')) {
       this.servicioService.eliminarServicio(id);
-      this.cargarServicios();
     }
   }
 

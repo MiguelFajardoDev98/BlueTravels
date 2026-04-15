@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { ServicioService } from '../../services/servicio.service';
 import { Servicio } from '../../models/servicio.model';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, FormsModule],
   template: `
     <section class="hero">
       <div class="hero-content">
@@ -18,7 +19,7 @@ import { Servicio } from '../../models/servicio.model';
           <div class="search-form-grid">
             <div class="search-field">
               <label>Destino</label>
-              <select class="w-full" style="padding: 0.75rem 1rem; border: 2px solid var(--color-border); border-radius: var(--radius-lg);">
+              <select [(ngModel)]="filtros.destino" name="destino" class="w-full" style="padding: 0.75rem 1rem; border: 2px solid var(--color-border); border-radius: var(--radius-lg);">
                 <option value="">Todos los destinos</option>
                 <option value="colombia">Colombia</option>
                 <option value="mexico">México</option>
@@ -27,7 +28,7 @@ import { Servicio } from '../../models/servicio.model';
             </div>
             <div class="search-field">
               <label>Experiencia</label>
-              <select class="w-full" style="padding: 0.75rem 1rem; border: 2px solid var(--color-border); border-radius: var(--radius-lg);">
+              <select [(ngModel)]="filtros.experiencia" name="experiencia" class="w-full" style="padding: 0.75rem 1rem; border: 2px solid var(--color-border); border-radius: var(--radius-lg);">
                 <option value="">Todas</option>
                 <option value="avistamiento">Avistamiento</option>
                 <option value="fotografico">Fotográfico</option>
@@ -36,13 +37,13 @@ import { Servicio } from '../../models/servicio.model';
             </div>
             <div class="search-field">
               <label>Fecha</label>
-              <input type="date" style="padding: 0.75rem 1rem; border: 2px solid var(--color-border); border-radius: var(--radius-lg); width: 100%;">
+              <input type="date" [(ngModel)]="filtros.fecha" name="fecha" style="padding: 0.75rem 1rem; border: 2px solid var(--color-border); border-radius: var(--radius-lg); width: 100%;">
             </div>
             <div class="search-field">
               <label>Personas</label>
-              <select class="w-full" style="padding: 0.75rem 1rem; border: 2px solid var(--color-border); border-radius: var(--radius-lg);">
+              <select [(ngModel)]="filtros.personas" name="personas" class="w-full" style="padding: 0.75rem 1rem; border: 2px solid var(--color-border); border-radius: var(--radius-lg);">
                 <option value="1">1 persona</option>
-                <option value="2" selected>2 personas</option>
+                <option value="2">2 personas</option>
                 <option value="3">3 personas</option>
                 <option value="4">4 personas</option>
                 <option value="5+">5+ personas</option>
@@ -440,8 +441,17 @@ import { Servicio } from '../../models/servicio.model';
 })
 export class HomeComponent implements OnInit {
   serviciosDestacados: Servicio[] = [];
+  filtros = {
+    destino: '',
+    experiencia: '',
+    fecha: '',
+    personas: '2'
+  };
 
-  constructor(private servicioService: ServicioService) {}
+  constructor(
+    private servicioService: ServicioService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     const servicios = this.servicioService.getServicios();
@@ -458,6 +468,11 @@ export class HomeComponent implements OnInit {
 
   buscar(event: Event): void {
     event.preventDefault();
-    window.location.href = '/catalogo';
+    this.router.navigate(['/catalogo'], { 
+      queryParams: { 
+        destino: this.filtros.destino,
+        experiencia: this.filtros.experiencia
+      } 
+    });
   }
 }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Servicio } from '../models/servicio.model';
 
 @Injectable({
@@ -45,61 +46,70 @@ export class ServicioService {
     }
   ];
 
+  private serviciosSubject = new BehaviorSubject<Servicio[]>(this.cargarServiciosDesdeStorage());
+  public servicios$ = this.serviciosSubject.asObservable();
+
   constructor() {
     this.inicializarServicios();
+  }
+
+  private cargarServiciosDesdeStorage(): Servicio[] {
+    const stored = localStorage.getItem(this.STORAGE_KEY);
+    return stored ? JSON.parse(stored) : this.serviciosDefault;
   }
 
   private inicializarServicios(): void {
     const stored = localStorage.getItem(this.STORAGE_KEY);
     if (!stored) {
       localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.serviciosDefault));
+      this.serviciosSubject.next(this.serviciosDefault);
     }
   }
 
   getServicios(): Servicio[] {
-    const stored = localStorage.getItem(this.STORAGE_KEY);
-    return stored ? JSON.parse(stored) : this.serviciosDefault;
+    return this.serviciosSubject.value;
   }
 
   getServicioById(id: number): Servicio | undefined {
-    const servicios = this.getServicios();
-    return servicios.find(s => s.id === id);
+    return this.serviciosSubject.value.find(s => s.id === id);
   }
 
   crearServicio(servicio: Omit<Servicio, 'id'>): Servicio {
-    const servicios = this.getServicios();
+    const servicios = this.serviciosSubject.value;
     const maxId = Math.max(...servicios.map(s => s.id), 0);
     const nuevoServicio: Servicio = {
       ...servicio,
       id: maxId + 1
     };
-    servicios.push(nuevoServicio);
-    this.guardarServicios(servicios);
+    const nuevosServicios = [...servicios, nuevoServicio];
+    this.guardarServicios(nuevosServicios);
     return nuevoServicio;
   }
 
   actualizarServicio(id: number, servicioActualizado: Partial<Servicio>): boolean {
-    const servicios = this.getServicios();
+    const servicios = this.serviciosSubject.value;
     const index = servicios.findIndex(s => s.id === id);
     if (index === -1) return false;
     
-    servicios[index] = { ...servicios[index], ...servicioActualizado };
-    this.guardarServicios(servicios);
+    const nuevosServicios = [...servicios];
+    nuevosServicios[index] = { ...nuevosServicios[index], ...servicioActualizado };
+    this.guardarServicios(nuevosServicios);
     return true;
   }
 
   eliminarServicio(id: number): boolean {
-    const servicios = this.getServicios();
+    const servicios = this.serviciosSubject.value;
     const index = servicios.findIndex(s => s.id === id);
     if (index === -1) return false;
     
-    servicios.splice(index, 1);
-    this.guardarServicios(servicios);
+    const nuevosServicios = servicios.filter(s => s.id !== id);
+    this.guardarServicios(nuevosServicios);
     return true;
   }
 
   private guardarServicios(servicios: Servicio[]): void {
     localStorage.setItem(this.STORAGE_KEY, JSON.stringify(servicios));
+    this.serviciosSubject.next(servicios);
   }
 
   getFavoritos(): number[] {
