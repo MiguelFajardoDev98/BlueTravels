@@ -1,0 +1,318 @@
+SEGUNDA ENTREGA (ESCENARIO 5)
+Subgrupo 25: Blue Travels
+Integrantes: Ashly, Iván y Miguel
+
+Tabla de Contenido
+1. Portada ................................................... i
+2. Tabla de Contenido ......................................... ii
+3. Introducción ................................................ 1
+4. Objetivos ................................................... 2
+5. Maquetación (Entrega 1) .................................... 3
+6. Estructura del Código Fuente ............................... 5
+7. Funcionalidades Técnicas ................................... 7
+8. URL del Repositorio ........................................ 10
+9. Conclusiones ............................................... 11
+10. Referencias ............................................... 12
+
+INTRODUCCIÓN
+
+Blue Travels es una plataforma de servicios turísticos desarrollada utilizando el framework Angular, diseñada para ofrecer a los usuarios una experiencia interactiva para explorar, filtrar y reservar experiencias turísticas relacionadas con el avistamiento de ballenas y actividades náuticas en diversas ubicaciones de América Latina.
+
+Este proyecto representa la aplicación práctica de los conceptos aprendidos en el curso de desarrollo frontend con Angular, implementando una arquitectura basada en componentes, servicios inyectables y manejo de estado mediante RxJS y localStorage para la persistencia de datos del lado del cliente.
+
+Durante el desarrollo, se han implementado características clave como:
+- Navegación entre vistas mediante el enrutador de Angular
+- Catálogo dinámico de tours utilizando *ngFor
+- Sistema de filtrado de tours por destino y tipo de experiencia
+- Persistencia de datos utilizando localStorage
+- Formularios interactivos para crear y editar tours
+- Diseño responsive adaptable a diferentes tamaños de pantalla
+
+El proyecto ha sido desplegado exitosamente en GitHub Pages, permitiendo su acceso público mediante el enlace: https://miguelfajardodev98.github.io/BlueTravels/
+
+OBJETIVOS
+
+Objetivo General
+Desarrollar una aplicación web funcional utilizando el framework Angular que permita a los usuarios explorar, filtrar y gestionar experiencias turísticas de avistamiento de ballenas, aplicando las mejores prácticas de arquitectura frontend y estándares de desarrollo web.
+
+Objetivos Específicos
+1. Implementar una arquitectura de componentes reutilizables siguiendo las mejores prácticas de Angular
+2. Implementar un sistema de enrutamiento que permita la navegación entre las diferentes vistas de la aplicación
+3. Implementar un catálogo dinámico de tours utilizando *ngFor para la renderización eficiente de listas
+4. Desarrollar un sistema de filtrado de tours por destino y tipo de experiencia utilizando pipes y lógica de filtrado personalizada
+5. Implementar persistencia de datos del lado del cliente utilizando localStorage para mantener el estado entre sesiones
+6. Desarrollar formularios interactivos con validación para la creación y edición de tours
+7. Implementar un diseño responsive que se adapte a diferentes tamaños de pantalla
+8. Desplegar la aplicación en GitHub Pages para su acceso público
+
+MAQUETACIÓN (ENTREGA 1)
+
+Mockups Iniciales
+
+En la primera entrega, se diseñaron los siguientes mockups iniciales para las vistas principales de la aplicación:
+
+Home (Inicio)
+- Barra de navegación con logo y enlaces a las secciones principales
+- Hero section con imagen destacada y llamada a la acción
+- Sección de características destacadas con íconos y descripciones
+- Footer con información de contacto y enlaces a redes sociales
+
+Catálogo
+- Barra de búsqueda y filtros para filtrar tours por destino y tipo
+- Grid de tarjetas de tours mostrando imagen, título, ubicación, precio y duración
+- Botón "Ver detalle" en cada tarjeta para navegar al detalle del tour
+- Botón para crear nuevos tours
+
+Detalle
+- Imagen destacada del tour
+- Información detallada: nombre, descripción, precio, duración, ubicación
+- Lista de qué incluye el tour
+- Botón para agregar a favoritos
+- Botón para regresar al catálogo
+
+Contacto
+- Formulario de contacto con campos: nombre, email, teléfono, servicio de interés y mensaje
+- Botón de envío del formulario
+- Información de contacto adicional (teléfono, email, dirección)
+
+Transformación a Código
+
+Los mockups iniciales fueron transformados en componentes Angular funcionales mediante:
+
+1. Estructura de componentes: Cada vista se convirtió en un componente Angular independiente
+2. Plantillas HTML: Los mockups se tradujeron a templates Angular utilizando sintaxis de template y directivas (*ngIf, *ngFor, [routerLink], etc.)
+3. Estilos CSS/SCSS: Los estilos visuales se implementaron utilizando CSS personalizado con variables CSS para mantener consistencia temática
+4. Componentes reutilizables: Se crearon componentes reutilizables como botones, badges y tarjetas para mantener consistencia visual
+5. Responsive design: Se implementaron media queries y clases de utilidad para asegurar adaptabilidad a diferentes tamaños de pantalla
+
+La transformación mantuvo la esencia visual de los mockups iniciales mientras añadía funcionalidad interactiva completa mediante el uso de Angular y TypeScript.
+
+ESTRUCTURA DEL CÓDIGO FUENTE
+
+La estructura del código fuente sigue las mejores prácticas de organización para proyectos Angular, organizando los archivos por funcionalidad y tipo:
+
+src/
+└── app/
+    ├── app.component.ts          # Componente raíz
+    ├── app.routes.ts             # Configuración de enrutamiento
+    ├── app.config.ts             # Configuración de la aplicación
+    ├── components/               # Componentes de la aplicación
+    │   ├── home/
+    │   │   ├── home.component.ts
+    │   │   └── home.component.html (inline)
+    │   ├── catalogo/
+    │   │   ├── catalogo.component.ts
+    │   │   └── catalogo.component.html (inline)
+    │   ├── detalle/
+    │   │   ├── detalle.component.ts
+    │   │   └── detalle.component.html (inline)
+    │   ├── nosotros/
+    │   │   ├── nosotros.component.ts
+    │   │   └── nosotros.component.html (inline)
+    │   └── contacto/
+    │       ├── contacto.component.ts
+    │       └── contacto.component.html (inline)
+    ├── services/                 # Servicios inyectables
+    │   └── servicio.service.ts
+    └── models/                   # Interfaces y modelos de datos
+        └── servicio.model.ts
+
+Descripción de la Jerarquía de Carpetas
+
+src/app/components/
+Contiene todos los componentes de la aplicación, cada uno en su propia subcarpeta. Cada componente sigue el patrón de Angular standalone, conteniendo su lógica de TypeScript y su template HTML inline.
+
+- home.component.ts: Vista principal de inicio
+- catalogo.component.ts: Vista principal que muestra el catálogo de tours con filtrado y funcionalidades CRUD
+- detalle.component.ts: Vista de detalle de un tour específico
+- nosotros.component.ts: Página informativa sobre la empresa
+- contacto.component.ts: Formulario de contacto con funcionalidad de envío
+
+src/app/services/
+Contiene los servicios inyectables que encapsulan la lógica de negocio y el acceso a datos.
+
+- servicio.service.ts: Servicio central que maneja:
+  - Operaciones CRUD sobre los servicios/tours
+  - Persistencia de datos utilizando localStorage
+  - Sistema de favoritos
+  - Gestión de contactos
+  - Formateo de precios
+
+src/app/models/
+Contiene las interfaces y modelos de datos que definen la estructura de los datos utilizados en la aplicación.
+
+- servicio.model.ts: Define la interfaz Servicio con todas sus propiedades (id, nombre, descripcion, precio, duración, ubicación, imagen, incluye, disponible)
+- También incluye la interfaz FormularioContacto para el formulario de contacto
+
+Esta organización sigue las mejores prácticas de Angular al separar claramente las responsabilidades: componentes para la vista y interacción del usuario, servicios para la lógica de negocio y acceso a datos, y modelos para la definición de tipos de datos.
+
+FUNCIONALIDADES TÉCNICAS
+
+Uso de *ngFor para el Catálogo Dinámico
+
+En el componente CatalogoComponent, se utiliza la directiva *ngFor de Angular para renderizar dinámicamente la lista de tours filtrados:
+
+<div class="grid-3">
+    <article *ngFor="let servicio of serviciosFiltrados" class="service-card">
+        <!-- Contenido de la tarjeta de servicio -->
+    </article>
+</div>
+
+Esta directiva itera sobre el observable serviciosFiltrados$ (que emite un array de servicios filtrados) y crea un elemento <article> para cada servicio en el array. Angular actualiza automáticamente la vista cuando el array cambia, lo que permite una actualización eficiente del DOM cuando se agregan, eliminan o modifican tours.
+
+El uso de *ngFor con el pipe async (*ngFor="let servicio of serviciosFiltrados$ | async") permite que Angular se suscriba automáticamente al observable y se desuscriba cuando el componente se destruya, evitando fugas de memoria.
+
+Sistema de Filtrado de Tours
+
+El sistema de filtrado está implementado en el CatalogoComponent mediante una función de filtrado personalizada que combina los datos del servicio con los parámetros de ruta:
+
+this.filteredServicios$ = combineLatest([
+  this.servicioService.servicios$,
+  this.route.queryParams
+]).pipe(
+  map(([servicios, params]) => this.filtrarServicios(servicios, params['destino'], params['experiencia']))
+);
+
+La función filtrarServicios implementa la lógica de filtrado:
+
+private filtrarServicios(servicios: Servicio[], destino?: string, experiencia?: string): Servicio[] {
+  return servicios.filter(s => {
+    let matchDestino = true;
+    let matchExperiencia = true;
+
+    if (destino) {
+      matchDestino = s.ubicacion.toLowerCase().includes(destino.toLowerCase());
+    }
+
+    if (experiencia) {
+      const keywords: {[key: string]: string[]} = {
+        'avistamiento': ['avistamiento', 'encuentro'],
+        'fotografico': ['fotográfica', 'foto', 'capturar'],
+        'navegacion': ['navegación', 'recorrido', 'barco']
+      };
+      const searchTerms = keywords[experiencia] || [experiencia];
+      matchExperiencia = searchTerms.some(term => 
+        s.nombre.toLowerCase().includes(term.toLowerCase()) || 
+        s.descripcion.toLowerCase().includes(term.toLowerCase())
+      );
+    }
+
+    return matchDestino && matchExperiencia;
+  });
+}
+
+Este sistema permite:
+- Filtrado por destino (ubicación) mediante coincidencia parcial insensible a mayúsculas/minúsculas
+- Filtrado por tipo de experiencia usando palabras clave predefinidas
+- Combinación de ambos filtros simultáneamente
+- Actualización en tiempo real al cambiar los parámetros de consulta en la URL
+
+Persistencia con localStorage
+
+La persistencia de datos se implementa en el ServicioService utilizando la API de localStorage del navegador:
+
+private readonly STORAGE_KEY = 'bluetravels_servicios';
+
+private cargarServiciosDesdeStorage(): Servicio[] {
+  const stored = localStorage.getItem(this.STORAGE_KEY);
+  return stored ? JSON.parse(stored) : this.serviciosDefault;
+}
+
+private guardarServicios(servicios: Servicio[]): void {
+  localStorage.setItem(this.STORAGE_KEY, JSON.stringify(servicios));
+  this.serviciosSubject.next(servicios);
+}
+
+Características de la implementación de persistencia:
+
+1. Inicialización: Al crear el servicio, verifica si existen datos en localStorage. Si no existen, inicializa con datos predeterminados
+2. Lectura: Los datos se leen desde localStorage y se convierten de JSON a objetos JavaScript
+3. Escritura: Cada vez que se modifican los datos (crear, actualizar, eliminar), se guardan de nuevo en localStorage
+4. Reactividad: Se utiliza un BehaviorSubject para notificar a los componentes cuando los datos cambian
+5. Claves múltiples: Se utilizan diferentes claves en localStorage para diferentes tipos de datos:
+   - bluetravels_servicios: Almacena los tours/tours
+   - bluetravels_favoritos: Almacena los IDs de los tours marcados como favoritos
+   - bluetravels_contactos: Almacena los mensajes de contacto enviados
+
+Esta enfoque garantiza que los datos persistan entre recargas de página y reinicios del navegador, proporcionando una experiencia de usuario más robusta sin requerir un backend.
+
+URL DEL REPOSITORIO
+
+Repositorio GitHub: https://github.com/MiguelFajardoDev98/BlueTravels
+GitHub Pages (Despliegue): https://miguelfajardodev98.github.io/BlueTravels/
+
+El repositorio contiene todo el código fuente del proyecto Angular, incluyendo:
+- Código fuente de la aplicación (src/)
+- Configuración de Angular (angular.json, tsconfig.json)
+- Dependencias del proyecto (package.json, package-lock.json)
+- Archivos de configuración de GitHub Pages
+- Documentación adicional
+
+El despliegue en GitHub Pages fue configurado utilizando el script deploy definido en package.json:
+"deploy": "ng build --base-href https://miguelfajardodev98.github.io/BlueTravels/ && npx angular-cli-ghpages --dir=dist/bluetravels"
+
+Este script construye la aplicación con el base-href correcto para GitHub Pages y luego publica el contenido en la rama gh-pages del repositorio.
+
+CONCLUSIONES
+
+Aprendizajes en Angular
+
+Durante el desarrollo del proyecto Blue Travels, se adquirieron y consolidaron los siguientes conocimientos sobre Angular:
+
+1. Arquitectura basada en componentes: Comprensión profunda de cómo estructurar una aplicación Angular utilizando componentes reutilizables y encapsulados
+2. Enrutamiento: Implementación efectiva del enrutamiento de Angular para navegación entre vistas sin recarga de página
+3. Manejo de estado: Uso efectivo de RxJS (BehaviorSubject, Observable, combineLatest) para manejo reactivo de estado
+4. Forms: Implementación de formularios template-driven con validación y manejo de eventos
+5. Directivas: Uso efectivo de directivas estructurales (*ngFor, *ngIf) y de atributos ([routerLink], [src], [class])
+6. Inyección de dependencias: Implementación correcta de servicios inyectables con providedIn: 'root'
+7. Buenas prácticas: Aplicación de convenciones de nomenclatura, separación de responsabilidades y organización de código
+
+Experiencia con Despliegue
+
+El despliegue de la aplicación en GitHub Pages proporcionó valiosos aprendizajes:
+
+1. Configuración de base-href: Importancia de configurar correctamente el base-href para que los recursos se carguen correctamente en entornos de subdirectorios
+2. Herramientas de despliegue: Utilización efectiva de angular-cli-ghpages para automatizar el proceso de despliegue
+3. Ramas de GitHub Pages: Comprensión de cómo GitHub Pages utiliza ramas específicas (gh-pages) para servir contenido estático
+4. Solución de problemas: Experiencia en diagnosticar y resolver problemas comunes de despliegue como errores 404 y problemas de carga de recursos
+5. Tiempo de propagación: Comprensión de que GitHub Pages puede tardar unos minutos en activarse completamente después del primer despliegue
+
+Mejoras Futuras
+
+Basado en la experiencia de desarrollo, se identifican las siguientes áreas para mejoras futuras:
+
+1. Implementación de un backend real: Reemplazar localStorage por una API REST o GraphQL para mayor escalabilidad y persistencia centralizada
+2. Autenticación y autorización: Agregar autenticación de usuarios para personalizar la experiencia y proteger ciertas funcionalidades
+3. Optimización de rendimiento: Implementar lazy loading de módulos y estratégicas de cambio de detección para mejorar el rendimiento
+4. Testing: Añadir pruebas unitarias y de extremo a extremo utilizando Jasmine y Protractor/Cypress
+5. Accesibilidad: Mejorar el cumplimiento de WCAG para hacer la aplicación más accesible
+6. Internacionalización (i18n): Agregar soporte para múltiples idiomas
+7. Mejoras de UI/UX: Implementar animaciones, transiciones y microinteracciones para mejorar la experiencia de usuario
+
+Reflexión Final
+
+El proyecto Blue Travels logró exitosamente sus objetivos principales:
+- Desarrollar una aplicación web funcional utilizando Angular
+- Implementar todas las funcionalidades solicitadas (catálogo dinámico, filtrado, persistencia)
+- Desplegar la aplicación en un entorno público accesible
+- Aplicar las mejores prácticas de desarrollo frontend
+
+El proyecto sirve como una sólida demostración de las capacidades de Angular para construir aplicaciones web modernas, interactivas y mantenibles, preparando a los desarrolladores para enfrentar desafíos más complejos en el desarrollo frontend profesional.
+
+REFERENCIAS
+
+Angular Documentation. (2024). Angular Guide. https://angular.io/guide
+
+TypeScript Documentation. (2024). TypeScript Handbook. https://www.typescriptlang.org/docs/
+
+LocalStorage API Documentation. (2024). Web Storage API. https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
+
+RxJS Documentation. (2024). RxJS Documentation. https://rxjs.dev/guide/overview
+
+GitHub Pages Documentation. (2024). GitHub Pages Help. https://docs.github.com/en/pages
+
+Angular CLI Documentation. (2024). Angular CLI Reference. https://angular.io/cli
+
+Material Design for Angular. (2024). Angular Material Components. https://material.angular.io/
+
+Note: Se siguieron las normas APA para la elaboración de este documento, incluyendo referencias formateadas según las pautas de la séptima edición del Manual de Publicación de la Asociación Americana de Psicología (APA). Las referencias incluidas representan las fuentes principales consultadas para el desarrollo técnico del proyecto y la elaboración de este documento.
